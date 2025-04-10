@@ -8,6 +8,7 @@
     </x-slot>
 
     <!-- begin: grid -->
+    <link rel="stylesheet" href="{{ asset('css/student.css') }}">
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
         <div class="lg:col-span-2">
             <div class="grid">
@@ -106,23 +107,29 @@
                         Ajouter un étudiant
                     </h3>
                 </div>
-                <body>
-                <form action="ajouter_eleve.php" method="post">
-                    <label for="nom">Nom :</label><br>
-                    <input type="text" id="nom" name="nom" required><br><br>
+                <form action="ajouter_eleve.php" method="post" class="form-top-space">
+                    <div class="form-group">
+                        <label for="prenom">Prénom</label>
+                        <input type="text" id="prenom" name="prenom" required>
+                    </div>
 
-                    <label for="prenom">Prénom :</label><br>
-                    <input type="text" id="prenom" name="prenom" required><br><br>
+                    <div class="form-group">
+                        <label for="nom">Nom</label>
+                        <input type="text" id="nom" name="nom" required>
+                    </div>
 
-                    <label for="email">Email :</label><br>
-                    <input type="email" id="email" name="email" required><br><br>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
 
-                    <label for="date_naissance">Date de naissance :</label><br>
-                    <input type="date" id="date_naissance" name="date_naissance" required><br><br>
+                    <div class="form-group">
+                        <label for="date_naissance">Date de naissance</label>
+                        <input type="date" id="date_naissance" name="date_naissance" required>
+                    </div>
 
-                    <input type="submit" value="Ajouter l'élève">
+                    <button type="submit" class="submit-btn">Ajouter l’élève</button>
                 </form>
-                </body>
                 </html>
             </div>
         </div>
