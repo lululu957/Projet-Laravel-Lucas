@@ -106,10 +106,24 @@
                         Ajouter un étudiant
                     </h3>
                 </div>
-                <div class="card-body flex flex-col gap-5">
-                    Formulaire à créer
-                    <!-- @todo A compléter -->
-                </div>
+                <body>
+                <form action="ajouter_eleve.php" method="post">
+                    <label for="nom">Nom :</label><br>
+                    <input type="text" id="nom" name="nom" required><br><br>
+
+                    <label for="prenom">Prénom :</label><br>
+                    <input type="text" id="prenom" name="prenom" required><br><br>
+
+                    <label for="email">Email :</label><br>
+                    <input type="email" id="email" name="email" required><br><br>
+
+                    <label for="date_naissance">Date de naissance :</label><br>
+                    <input type="date" id="date_naissance" name="date_naissance" required><br><br>
+
+                    <input type="submit" value="Ajouter l'élève">
+                </form>
+                </body>
+                </html>
             </div>
         </div>
     </div>

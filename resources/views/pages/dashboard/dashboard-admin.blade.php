@@ -20,6 +20,8 @@
                             <div>
                                 <h1>Nombre d'étudiants : {{ $nombreEtudiants }}</h1>
                                 <h1>Nombre d'enseignant : {{ $nombreEnseignants  }}</h1>
+                                <h1>Nombre de Promotions en France : {{ $nombrePromotions  }}</h1>
+                                <h1>Nombre de Groupes : {{ $nombreGroups  }}</h1>
                             </div>
                         </h3>
                     </div>
