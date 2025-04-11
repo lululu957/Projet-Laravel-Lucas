@@ -34,8 +34,8 @@ Route::middleware('auth')->group(function () {
         Route::get('/teachers', [TeacherController::class, 'index'])->name('teacher.index');
 
         // Students
-        Route::get('students', [StudentController::class, 'index'])->name('student.index');
-        Route::post('students', [StudentController::class, 'store'])->name('student.store');
+        Route::get('students', [StudentController::class, 'index'])->name('student.index'); //Index
+        Route::post('students', [StudentController::class, 'store'])->name('student.store'); //Store
 
         // Show Students
         Route::get('showStudents', [StudentController::class, 'showStudents'])->name('students.showStudents');
@@ -56,8 +56,8 @@ Route::middleware('auth')->group(function () {
         Route::view('form', 'index.blade');
 
         // User
-        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-
+        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); //Update
+        Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy'); //Destroy
     });
 
 });

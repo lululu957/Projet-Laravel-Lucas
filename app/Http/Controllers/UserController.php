@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserSchool;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -29,6 +30,19 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Utilisateur mis à jour avec succès.');
     }
+
+    public function destroy(User $user)
+    {
+        // Supprimer uniquement l'enregistrement dans `users_schools` correspondant à l'utilisateur
+        UserSchool::where('user_id', $user->id)->delete();
+
+        // Supprimer l'utilisateur
+        $user->delete();
+
+        return redirect()->back();
+    }
+
+
 }
 
 

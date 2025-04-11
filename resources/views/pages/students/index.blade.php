@@ -66,6 +66,7 @@
                                             <td>{{ $student->user->email }}</td>
                                             <td>
                                                 <div class="flex items-center justify-between">
+                                                    <!-- Icône de modification -->
                                                     <a class="hover:text-primary cursor-pointer"
                                                        href="#"
                                                        data-modal-toggle="#student-modal"
@@ -73,6 +74,15 @@
                                                        onclick="openEditModal(this)">
                                                         <i class="ki-filled ki-cursor"></i>
                                                     </a>
+
+                                                    <!-- Icône de suppression avec confirmation -->
+                                                    <form action="{{ route('user.destroy', $student->user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="hover:text-danger cursor-pointer bg-transparent border-0">
+                                                            <i class="text-danger ki-filled ki-shield-cross"></i> <!-- Icône bouclier rouge -->
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
