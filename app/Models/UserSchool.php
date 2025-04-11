@@ -10,6 +10,6 @@ class UserSchool extends Model
     protected $fillable     = ['user_id', 'school_id', 'role', 'active'];
 
     public function user(){
-        return User::where('id',$this->user_id)->first();
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

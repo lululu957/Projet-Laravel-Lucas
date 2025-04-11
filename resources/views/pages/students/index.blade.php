@@ -60,17 +60,17 @@
                                     <tbody>
                                     @foreach ($students as $student)
                                         <tr>
-                                            <td>{{ $student->user()->last_name }}</td>
-                                            <td>{{ $student->user()->first_name }}</td>
-                                            <td>{{ $student->user()->birth_date }}</td>
-                                            <td>{{ $student->user()->email }}</td>
+                                            <td>{{ $student->user->last_name }}</td>
+                                            <td>{{ $student->user->first_name }}</td>
+                                            <td>{{ $student->user->birth_date }}</td>
+                                            <td>{{ $student->user->email }}</td>
                                             <td>
                                                 <div class="flex items-center justify-between">
-                                                    <a href="#" class="text-success">
-                                                        <i class="text-danger ki-filled ki-shield-cross"></i>
-                                                    </a>
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
+                                                    <a class="hover:text-primary cursor-pointer"
+                                                       href="#"
+                                                       data-modal-toggle="#student-modal"
+                                                       data-user='@json($student->user)'
+                                                       onclick="openEditModal(this)">
                                                         <i class="ki-filled ki-cursor"></i>
                                                     </a>
                                                 </div>
@@ -138,6 +138,19 @@
         </div>
     </div>
     <!-- end: grid -->
+
+    <script>
+        function openEditModal(element) {
+            const user = JSON.parse(element.getAttribute('data-user'));
+
+            document.getElementById('edit_user_form').action = `/users/${user.id}`;
+            document.getElementById('edit_last_name').value = user.last_name;
+            document.getElementById('edit_first_name').value = user.first_name;
+            document.getElementById('edit_email').value = user.email;
+            document.getElementById('edit_birth_date').value = user.birth_date;
+        }
+    </script>
+
 </x-app-layout>
 
 @include('pages.students.student-modal')

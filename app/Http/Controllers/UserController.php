@@ -13,19 +13,22 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'nom' => 'required|string|max:255',
-            'prenom' => 'required|string|max:255',
-            'date_naissance' => 'required|date',
+            'last_name' => 'required|string|max:255',
+            'first_name' => 'required|string|max:255',
+            'birth_date' => 'required|date',
             'email' => 'required|email|max:255',
         ]);
 
         $user->update([
-            'nom' => $request->nom,
-            'prenom' => $request->prenom,
-            'date_naissance' => $request->date_naissance,
+            'last_name' => $request->last_name,
+            'first_name' => $request->first_name,
+            'birth_date' => $request->birth_date,
             'email' => $request->email,
         ]);
+
 
         return redirect()->back()->with('success', 'Utilisateur mis à jour avec succès.');
     }
 }
+
+
