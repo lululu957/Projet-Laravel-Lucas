@@ -1,0 +1,14 @@
+.link_dashboard{
+    display: inline;
+    color: black;
+    padding: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+}
+
+.link_dashboard:hover {
+    background-color: #d3d3d3; /* Gris clair */
+    color: black;
+}

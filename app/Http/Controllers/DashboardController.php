@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\UserSchool;
 use App\Models\Cohort;
 use App\Models\Groups;
+use App\Models\Student;
 
 class DashboardController extends Controller
 {

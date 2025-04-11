@@ -10,6 +10,8 @@ use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
 
 // Redirect the root path to /dashboard
 Route::redirect('/', 'dashboard');
@@ -33,6 +35,10 @@ Route::middleware('auth')->group(function () {
 
         // Students
         Route::get('students', [StudentController::class, 'index'])->name('student.index');
+        Route::post('students', [StudentController::class, 'store'])->name('student.store');
+
+        // Show Students
+        Route::get('showStudents', [StudentController::class, 'showStudents'])->name('students.showStudents');
 
         // Knowledge
         Route::get('knowledge', [KnowledgeController::class, 'index'])->name('knowledge.index');
@@ -45,6 +51,13 @@ Route::middleware('auth')->group(function () {
 
         // Common life
         Route::get('common-life', [CommonLifeController::class, 'index'])->name('common-life.index');
+
+        // Form
+        Route::view('form', 'index.blade');
+
+        // User
+        Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+
     });
 
 });

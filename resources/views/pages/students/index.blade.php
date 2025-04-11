@@ -44,34 +44,29 @@
                                                 <span class="sort-icon"></span>
                                             </span>
                                         </th>
-                                        <th class="w-[70px]"></th>
+                                        <th class="min-w-[135px]">
+                                            <span class="sort asc">
+                                                 <span class="sort-label">Email</span>
+                                                 <span class="sort-icon"></span>
+                                            </span>
+                                        </th>
+                                        <th class="min-w-[70px]">
+                                            <span class="sort asc">
+                                                 <span class="sort-label">Icone</span>
+                                            </span>
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach ($students as $student)
                                         <tr>
-                                            <td>Doe</td>
-                                            <td>John</td>
-                                            <td>12/02/2000</td>
+                                            <td>{{ $student->user()->last_name }}</td>
+                                            <td>{{ $student->user()->first_name }}</td>
+                                            <td>{{ $student->user()->birth_date }}</td>
+                                            <td>{{ $student->user()->email }}</td>
                                             <td>
                                                 <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-success ki-filled ki-shield-tick"></i>
-                                                    </a>
-
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
-                                                        <i class="ki-filled ki-cursor"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Joe</td>
-                                            <td>Dohn</td>
-                                            <td>02/12/2000</td>
-                                            <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
+                                                    <a href="#" class="text-success">
                                                         <i class="text-danger ki-filled ki-shield-cross"></i>
                                                     </a>
                                                     <a class="hover:text-primary cursor-pointer" href="#"
@@ -81,6 +76,7 @@
                                                 </div>
                                             </td>
                                         </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -100,6 +96,7 @@
                 </div>
             </div>
         </div>
+
         <div class="lg:col-span-1">
             <div class="card h-full">
                 <div class="card-header">
@@ -107,15 +104,16 @@
                         Ajouter un étudiant
                     </h3>
                 </div>
-                <form action="ajouter_eleve.php" method="post" class="form-top-space">
+                <form method="post" action="{{ route('student.store') }}" class="form-top-space">
+                    @csrf
                     <div class="form-group">
-                        <label for="prenom">Prénom</label>
-                        <input type="text" id="prenom" name="prenom" required>
+                        <label for="first_name">Prénom</label>
+                        <input type="text" id="first_name" name="first_name" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="nom">Nom</label>
-                        <input type="text" id="nom" name="nom" required>
+                        <label for="last_name">Nom</label>
+                        <input type="text" id="last_name" name="last_name" required>
                     </div>
 
                     <div class="form-group">
@@ -124,13 +122,18 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="date_naissance">Date de naissance</label>
-                        <input type="date" id="date_naissance" name="date_naissance" required>
+                        <label for="birth_date">Date de naissance</label>
+                        <input type="date" id="birth_date" name="birth_date" required>
                     </div>
 
                     <button type="submit" class="submit-btn">Ajouter l’élève</button>
                 </form>
-                </html>
+                @if(session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+
             </div>
         </div>
     </div>
