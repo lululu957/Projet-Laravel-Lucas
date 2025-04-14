@@ -82,4 +82,9 @@ class User extends Authenticatable
             ->withPivot('role')
             ->first();
     }
+
+    public function cohorts()
+    {
+        return $this->belongsToMany(Cohort::class);
+    }
 }

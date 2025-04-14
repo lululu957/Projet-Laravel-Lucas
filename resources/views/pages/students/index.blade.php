@@ -74,8 +74,7 @@
                                                        onclick="openEditModal(this)">
                                                         <i class="ki-filled ki-cursor"></i>
                                                     </a>
-
-                                                    <!-- Icône de suppression avec confirmation -->
+                                                    <!-- Icône de suppression -->
                                                     <form action="{{ route('user.destroy', $student->user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
                                                         @csrf
                                                         @method('DELETE')
