@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
 
         // Teachers
         Route::get('/teachers', [TeacherController::class, 'index'])->name('teacher.index');
+        Route::post('/teachers', [TeacherController::class, 'store'])->name('teacher.store');
 
         // Students
         Route::get('students', [StudentController::class, 'index'])->name('student.index'); //Index
@@ -63,14 +64,6 @@ Route::middleware('auth')->group(function () {
         Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); //Update
         Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy'); //Destroy
 
-        Route::get('/test-mail', function () {
-            $user = User::first(); // Teste avec un user existant
-            $password = 'azerty123';
-
-            Mail::to($user->email)->send(new StudentPasswordMail($user, $password));
-
-            return "Mail envoyé à {$user->email}";
-        });
     });
 
 });

@@ -8,6 +8,7 @@
     </x-slot>
 
     <!-- begin: grid -->
+    <link rel="stylesheet" href="{{ asset('css/student.css') }}">
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
         <div class="lg:col-span-2">
             <div class="grid">
@@ -37,41 +38,53 @@
                                                 <span class="sort-icon"></span>
                                             </span>
                                         </th>
-                                        <th class="w-[70px]"></th>
+                                        <th class="min-w-[135px]">
+                                            <span class="sort">
+                                                <span class="sort-label">Date de naissance</span>
+                                                <span class="sort-icon"></span>
+                                            </span>
+                                        </th>
+                                        <th class="min-w-[135px]">
+                                            <span class="sort asc">
+                                                 <span class="sort-label">Email</span>
+                                                 <span class="sort-icon"></span>
+                                            </span>
+                                        </th>
+                                        <th class="min-w-[70px]">
+                                            <span class="sort asc">
+                                                 <span class="sort-label">Icone</span>
+                                            </span>
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach ($teachers as $teacher)
                                         <tr>
-                                            <td>Doe</td>
-                                            <td>John</td>
+                                            <td>{{ $teacher->user->last_name }}</td>
+                                            <td>{{ $teacher->user->first_name }}</td>
+                                            <td>{{ $teacher->user->birth_date }}</td>
+                                            <td>{{ $teacher->user->email }}</td>
                                             <td>
                                                 <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-success ki-filled ki-shield-tick"></i>
-                                                    </a>
-
+                                                    <!-- Icône de modification -->
                                                     <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
+                                                       data-modal-toggle="#teacher-modal"
+                                                       data-user='@json($teacher->user)'
+                                                       onclick="openEditModal(this)">
                                                         <i class="ki-filled ki-cursor"></i>
                                                     </a>
+                                                    <!-- Icône de suppression -->
+                                                    <form action="{{ route('user.destroy', $teacher->user->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Êtes-vous sûr ?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="hover:text-danger cursor-pointer bg-transparent border-0">
+                                                            <i class="text-danger ki-filled ki-shield-cross"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>Joe</td>
-                                            <td>Dohn</td>
-                                            <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
-                                                        <i class="text-danger ki-filled ki-shield-cross"></i>
-                                                    </a>
-                                                    <a class="hover:text-primary cursor-pointer" href="#"
-                                                       data-modal-toggle="#student-modal">
-                                                        <i class="ki-filled ki-cursor"></i>
-                                                    </a>
-                                                </div>
-                                            </td>
-                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -99,13 +112,52 @@
                     </h3>
                 </div>
                 <div class="card-body flex flex-col gap-5">
-                    Formulaire à créer
-                    <!-- @todo A compléter -->
+                    <form method="POST" action="{{ route('teacher.store') }}" class="form-top-space">
+                        @csrf
+                        <div class="form-group">
+                            <label for="first_name">Prénom</label>
+                            <input type="text" id="first_name" name="first_name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="last_name">Nom</label>
+                            <input type="text" id="last_name" name="last_name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="birth_date">Date de naissance</label>
+                            <input type="date" id="birth_date" name="birth_date" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Ajouter l’enseignant</button>
+                    </form>
+                @if(session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
     </div>
     <!-- end: grid -->
+
+    <script>
+        function openEditModal(element) {
+            const user = JSON.parse(element.getAttribute('data-user'));
+
+            document.getElementById('edit_user_form').action = `/users/${user.id}`;
+            document.getElementById('edit_last_name').value = user.last_name;
+            document.getElementById('edit_first_name').value = user.first_name;
+            document.getElementById('edit_email').value = user.email;
+            document.getElementById('edit_birth_date').value = user.birth_date;
+        }
+    </script>
 </x-app-layout>
 
 @include('pages.teachers.teacher-modal')

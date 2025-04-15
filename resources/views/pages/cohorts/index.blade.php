@@ -22,16 +22,16 @@
                                     <thead>
                                     <tr>
                                         <th class="min-w-[280px]">
-                <span class="sort asc">
-                    <span class="sort-label">Promotion</span>
-                    <span class="sort-icon"></span>
-                </span>
-                                        </th>
-                                        <th class="min-w-[145px]">
-                <span class="sort">
-                    <span class="sort-label">Année</span>
-                    <span class="sort-icon"></span>
-                </span>
+                                        <span class="sort asc">
+                                            <span class="sort-label">Promotion</span>
+                                            <span class="sort-icon"></span>
+                                        </span>
+                                                                </th>
+                                                                <th class="min-w-[145px]">
+                                        <span class="sort">
+                                            <span class="sort-label">Année</span>
+                                            <span class="sort-icon"></span>
+                                        </span>
                                         </th>
                                         <th class="min-w-[145px]">
                                         <span class="sort">
@@ -55,12 +55,12 @@
                                                        href="{{ route('cohort.show', $cohort->id) }}">
                                                         {{ $cohort->name }}
                                                     </a>
-                                                    <span class="text-2sm text-gray-700 font-normal leading-3">
-                            {{ $cohort->location ?? 'Non spécifié' }}
-                        </span>
+                                                        <span class="text-2sm text-gray-700 font-normal leading-3">
+                                                            {{ $cohort->location ?? 'Non spécifié' }}
+                                                        </span>
                                                 </div>
                                             </td>
-                                            <td>{{ $cohort->start_year }} - {{ $cohort->end_year }}</td>
+                                            <td>{{ $cohort->years}}</td>
                                             <td>{{ $cohort->students_count }}</td>
                                             <td>
                                                 <div class="flex items-center justify-between">

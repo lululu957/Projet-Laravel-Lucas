@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class Cohort extends Model
 {
@@ -12,6 +14,13 @@ class Cohort extends Model
     public function students()
     {
         return $this->belongsToMany(User::class);
+    }
+
+    public function getYearsAttribute()
+    {
+        $startYear = \Carbon\Carbon::parse($this->start_date)->format('Y');
+        $endYear = \Carbon\Carbon::parse($this->end_date)->format('Y');
+        return "$startYear-$endYear";
     }
 }
 

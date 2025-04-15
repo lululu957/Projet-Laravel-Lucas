@@ -9,7 +9,6 @@ use App\Mail\StudentPasswordMail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SendStudentPassword;
 
 
 class StudentController extends Controller
@@ -49,17 +48,6 @@ class StudentController extends Controller
 
         return back()->with('success', 'Étudiant ajouté et mot de passe envoyé !');
     }
-
-
-    //function to showStudents
-    public function showStudents()
-    {
-        $students = UserSchool::where('role','student')->get();
-
-        return view('pages.students.index', compact('students'));
-    }
-
-
 
 }
 

@@ -54,6 +54,4 @@ class CohortController extends Controller
 
         return redirect()->route('cohort.index')->with('success', 'Promotion ajoutée avec succès !');
     }
-
-
 }
