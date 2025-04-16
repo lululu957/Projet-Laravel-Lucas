@@ -8,6 +8,7 @@
     </x-slot>
 
     <!-- begin: grid -->
+    <link rel="stylesheet" href="{{ asset('css/student.css') }}">
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
         <div class="lg:col-span-2">
             <div class="grid">
@@ -39,7 +40,7 @@
                                             <span class="sort-icon"></span>
                                         </span>
                                         </th>
-                                        <th class="min-w-[70px]">
+                                        <th class="min-w-[50px]">
                                             <span class="sort asc">
                                                  <span class="sort-label">Icone</span>
                                             </span>
@@ -60,16 +61,32 @@
                                                         </span>
                                                 </div>
                                             </td>
-                                            <td>{{ $cohort->years}}</td>
-                                            <td>{{ $cohort->students_count }}</td>
                                             <td>
-                                                <div class="flex items-center justify-between">
-                                                    <a href="#">
+                                                {{ \Carbon\Carbon::parse($cohort->start_date)->year }}
+                                                -
+                                                {{ \Carbon\Carbon::parse($cohort->end_date)->year }}
+                                            </td>
+                                            <td>{{ $cohort->students_count }}</td>
+                                            <td class="px-0 py-2 text-center w-[80px]">
+                                                <div class="flex items-center justify-center gap-4">
+                                                    <!-- Icône de modification -->
+                                                    <a class="hover:text-primary cursor-pointer"
+                                                       href="#"
+                                                       data-modal-toggle="#cohort-modal"
+                                                       data-cohort='@json($cohort)'
+                                                       onclick="openEditModal(this)">
                                                         <i class="ki-filled ki-cursor"></i>
                                                     </a>
-                                                    <a href="#">
-                                                        <i class="text-danger ki-filled ki-shield-cross"></i>
-                                                    </a>
+
+                                                    <!-- Icône de suppression -->
+                                                    <form action="{{ route('user.destroy', $cohort->id) }}" method="POST"
+                                                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="hover:text-danger cursor-pointer bg-transparent border-0">
+                                                            <i class="text-danger ki-filled ki-shield-cross"></i>
+                                                        </button>
+                                                    </form>
                                                 </div>
                                             </td>
                                         </tr>
@@ -110,11 +127,12 @@
 
                     <x-forms.input name="description" :label="__('Description')"/>
 
-                    <x-forms.input type="date" name="start_date" :label="__('Début de l\'année')"/>
+                    <x-forms.input type="date" id="edit_start_date" name="start_date" :label="__('Début de l\'année')"/>
 
-                    <x-forms.input type="date" name="end_date" :label="__('Fin de l\'année')"/>
+                    <x-forms.input type="date" id="edit_end_date" name="end_date" :label="__('Fin de l\'année')"/>
 
-                    @if ($errors->any())
+
+                @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
                                 @foreach ($errors->all() as $error)
@@ -132,4 +150,22 @@
         </div>
     </div>
     <!-- end: grid -->
+
+    <script>
+        function openEditModal(element) {
+            const cohort = JSON.parse(element.getAttribute('data-cohort'));
+
+            document.getElementById('edit_name').value = cohort.name || '';
+            document.getElementById('edit_description').value = cohort.location || '';
+            document.getElementById('edit_start_date').value = cohort.start_date || '';
+            document.getElementById('edit_end_date').value = cohort.end_date || '';
+
+            // Mettez l'action dynamiquement
+            const form = document.getElementById('edit_user_form');
+            form.action = `/cohorts/${cohort.id}`;
+
+            document.getElementById('cohort-modal').classList.remove('hidden');
+        }
+    </script>
 </x-app-layout>
+@include('pages.cohorts.cohort-modal')

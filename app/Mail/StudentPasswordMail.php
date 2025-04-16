@@ -25,7 +25,7 @@ class StudentPasswordMail extends Mailable
     public function build()
     {
         return $this->subject("Votre mot de passe temporaire")
-            ->view('emails.student_password') // ← C’est ce fichier
+            ->view('emails.student_password')
             ->with([
                 'student' => $this->student,
                 'password' => $this->password,

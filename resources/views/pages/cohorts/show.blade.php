@@ -7,6 +7,7 @@
 
     <!-- begin: grid -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
+        <!-- Colonne des étudiants -->
         <div class="lg:col-span-2">
             <div class="grid">
                 <div class="card card-grid h-full min-w-full">
@@ -20,28 +21,28 @@
                                     <thead>
                                     <tr>
                                         <th class="min-w-[135px]">
-                                            <span class="sort asc">
-                                                 <span class="sort-label">Nom</span>
-                                                 <span class="sort-icon"></span>
-                                            </span>
+                                                <span class="sort asc">
+                                                    <span class="sort-label">Nom</span>
+                                                    <span class="sort-icon"></span>
+                                                </span>
                                         </th>
                                         <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Prénom</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
+                                                <span class="sort">
+                                                    <span class="sort-label">Prénom</span>
+                                                    <span class="sort-icon"></span>
+                                                </span>
                                         </th>
                                         <th class="min-w-[135px]">
-                                            <span class="sort">
-                                                <span class="sort-label">Date de naissance</span>
-                                                <span class="sort-icon"></span>
-                                            </span>
+                                                <span class="sort">
+                                                    <span class="sort-label">Date de naissance</span>
+                                                    <span class="sort-icon"></span>
+                                                </span>
                                         </th>
                                         <th class="max-w-[50px]"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
+                                    <tr>
                                         <td>Doe</td>
                                         <td>John</td>
                                         <td>10/02/2000</td>
@@ -68,6 +69,8 @@
                 </div>
             </div>
         </div>
+
+        <!-- Colonne pour ajouter un étudiant -->
         <div class="lg:col-span-1">
             <div class="card h-full">
                 <div class="card-header">
@@ -75,14 +78,22 @@
                         Ajouter un étudiant à la promotion
                     </h3>
                 </div>
-                <div class="card-body flex flex-col gap-5">
-                    <x-forms.dropdown name="user_id" :label="__('Etudiant')">
-                        <option value="1">Etudiant 1</option>
-                    </x-forms.dropdown>
+                <div class="card-body">
+                    <form action="{{ route('cohorts.add-student', $cohort->id) }}" method="POST" class="flex flex-col gap-5">
+                        @csrf
 
-                    <x-forms.primary-button>
-                        {{ __('Valider') }}
-                    </x-forms.primary-button>
+                        <x-forms.dropdown name="user_id" :label="__('Etudiant')">
+                            @foreach ($students as $student)
+                                <option value="{{ $student->id }}">
+                                    {{ $student->last_name }} {{ $student->first_name }}
+                                </option>
+                            @endforeach
+                        </x-forms.dropdown>
+
+                        <x-forms.primary-button>
+                            {{ __('Valider') }}
+                        </x-forms.primary-button>
+                    </form>
                 </div>
             </div>
         </div>

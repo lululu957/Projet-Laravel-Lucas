@@ -113,8 +113,8 @@
                         Ajouter un étudiant
                     </h3>
                 </div>
-                <form method="post" action="{{ route('student.store') }}" class="form-top-space">
-                    @csrf
+                <form method="post" action="{{ route('student.store') }}" id="formStudent" class="form-top-space">
+                @csrf
                     <div class="form-group">
                         <label for="first_name">Prénom</label>
                         <input type="text" id="first_name" name="first_name" required>
@@ -159,7 +159,6 @@
             document.getElementById('edit_birth_date').value = user.birth_date;
         }
     </script>
-
 </x-app-layout>
 
 @include('pages.students.student-modal')

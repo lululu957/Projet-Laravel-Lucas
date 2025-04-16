@@ -30,6 +30,7 @@ class StudentController extends Controller
 
         $password = Str::random(10); // mot de passe généré
 
+        // Créer l'utilisateur
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
@@ -38,16 +39,27 @@ class StudentController extends Controller
             'password' => Hash::make($password),
         ]);
 
+        // Créer l'association avec l'école
         UserSchool::create([
             'user_id' => $user->id,
             'school_id' => 1, // ou l’ID de l’école que tu veux associer
             'role' => 'student',
         ]);
 
+        // Envoie un e-mail avec le mot de passe généré
         Mail::to($user->email)->send(new StudentPasswordMail($user, $password));
 
+//        // Si la requête est en AJAX
+//        if ($request->ajax()) {
+//            // Le bon modèle ici : 'student' => $user, pas $user->userSchool
+//            $html = view('components.student-row', ['student' => $user])->render();
+//            return response()->json(['dom' => $html]);
+//        }
+
+        // Retourne à la page précédente avec un message de succès
         return back()->with('success', 'Étudiant ajouté et mot de passe envoyé !');
     }
+
 
 }
 

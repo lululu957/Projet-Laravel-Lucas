@@ -10439,11 +10439,14 @@ process.umask = function() { return 0; };
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
-/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
+/* harmony import */ var _custom_students__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./custom/students */ "./resources/js/custom/students.js");
+/* harmony import */ var _custom_students__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_custom_students__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var alpinejs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! alpinejs */ "./node_modules/alpinejs/dist/module.esm.js");
 
 
-window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
-alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
+
+window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"];
+alpinejs__WEBPACK_IMPORTED_MODULE_2__["default"].start();
 
 /***/ }),
 
@@ -10459,6 +10462,75 @@ __webpack_require__.r(__webpack_exports__);
 
 window.axios = axios__WEBPACK_IMPORTED_MODULE_0__["default"];
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
+/***/ }),
+
+/***/ "./resources/js/custom/students.js":
+/*!*****************************************!*\
+  !*** ./resources/js/custom/students.js ***!
+  \*****************************************/
+/***/ (() => {
+
+// document.addEventListener('DOMContentLoaded', () => {
+//     const form = document.querySelector('#formStudent');
+//
+//     if (!form) {
+//         console.error("Formulaire introuvable !");
+//         return;
+//     }
+//
+//     form.addEventListener('submit', async function(event) {
+//         event.preventDefault();
+//
+//         const url = form.getAttribute('action') || "{{ route('student.store') }}";
+//         const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+//
+//         const formData = new FormData(form);
+//
+//         try {
+//             const response = await fetch(url, {
+//                 method: 'POST',
+//                 headers: {
+//                     'X-CSRF-TOKEN': csrfToken
+//                     // Pas besoin de 'Content-Type' ici avec FormData
+//                 },
+//                 body: formData
+//             });
+//
+//             console.log("Réponse reçue : ", response);
+//
+//             const contentType = response.headers.get("content-type");
+//
+//             if (!response.ok) {
+//                 console.error("Réponse non ok : ", response.status, response.statusText);
+//                 if (contentType && contentType.includes("application/json")) {
+//                     const errorData = await response.json();
+//                     console.error("Erreur JSON : ", errorData);
+//                     alert("Erreur : " + (errorData.message || "Une erreur est survenue."));
+//                 } else {
+//                     const errorText = await response.text();
+//                     console.error("Réponse non JSON :", errorText);
+//                     alert("Erreur inattendue.");
+//                 }
+//                 return;
+//             }
+//
+//             const data = await response.json();
+//             console.log("Réponse JSON : ", data);
+//
+//             if (data.dom) {
+//                 const table = document.querySelector('#students-table');
+//                 table.insertAdjacentHTML('beforeend', data.dom);
+//             } else {
+//                 console.warn("Réponse reçue sans 'dom'");
+//             }
+//
+//         } catch (error) {
+//             console.error("Erreur lors du fetch :", error);
+//             alert("Une erreur s'est produite lors de l'envoi du formulaire.");
+//         }
+//     });
+// });
 
 /***/ }),
 
@@ -10534,6 +10606,18 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 				}
 /******/ 			}
 /******/ 			return result;
+/******/ 		};
+/******/ 	})();
+/******/ 	
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	(() => {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = (module) => {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				() => (module['default']) :
+/******/ 				() => (module);
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
 /******/ 		};
 /******/ 	})();
 /******/ 	

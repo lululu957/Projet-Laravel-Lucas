@@ -11,10 +11,6 @@ use App\Http\Controllers\GroupController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
-use App\Mail\StudentPasswordMail;
-use Illuminate\Support\Facades\Mail;
-use App\Models\User;
-
 
 // Redirect the root path to /dashboard
 Route::redirect('/', 'dashboard');
@@ -33,6 +29,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/cohorts', [CohortController::class, 'index'])->name('cohort.index');
         Route::get('/cohort/{cohort}', [CohortController::class, 'show'])->name('cohort.show');
         Route::post('/cohort', [CohortController::class, 'store'])->name('cohort.store');
+        Route::put('/cohorts/{cohort}', [CohortController::class, 'update'])->name('cohort.update'); //Update
+        Route::post('/cohorts/{cohort}/add-student', [CohortController::class, 'addStudent'])->name('cohorts.add-student');
+
 
         // Teachers
         Route::get('/teachers', [TeacherController::class, 'index'])->name('teacher.index');
