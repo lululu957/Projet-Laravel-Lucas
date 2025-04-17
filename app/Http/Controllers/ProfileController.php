@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -57,4 +58,29 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function updatePP(Request $request): RedirectResponse
+    {
+        $request->validate([
+            'profile_picture' => ['nullable', 'image', 'max:2048'], // max 2MB
+        ]);
+
+        $user = $request->user();
+
+        if ($request->hasFile('profile_picture')) {
+            // Supprimer l'ancienne photo si elle existe
+            if ($user->profile_picture) {
+                Storage::disk('public')->delete($user->profile_picture);
+            }
+
+            // Stocker la nouvelle photo
+            $path = $request->file('profile_picture')->store('profile_pictures', 'public');
+            $user->profile_picture = $path;
+            $user->save();
+        }
+
+        return Redirect::route('profile.edit')->with('status', 'profile-picture-updated');
+    }
+
+
 }

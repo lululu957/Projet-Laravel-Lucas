@@ -13,10 +13,6 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="card-body flex flex-col gap-5 p-10">
-        @csrf
-        @method('patch')
-
         <div>
             <x-forms.input
                 label="{{ __('Name') }}"
@@ -73,5 +69,4 @@
                 >{{ __('Saved.') }}</p>
             @endif
         </div>
-    </form>
 </section>

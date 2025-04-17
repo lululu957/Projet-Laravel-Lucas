@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::patch('/profile/update-pp', [ProfileController::class, 'updatePP'])->name('profile.updatePP');
+
 
     Route::middleware('verified')->group(function () {
         // Dashboard
@@ -30,12 +32,13 @@ Route::middleware('auth')->group(function () {
         Route::get('/cohort/{cohort}', [CohortController::class, 'show'])->name('cohort.show');
         Route::post('/cohort', [CohortController::class, 'store'])->name('cohort.store');
         Route::put('/cohorts/{cohort}', [CohortController::class, 'update'])->name('cohort.update'); //Update
-        Route::post('/cohorts/{cohort}/add-student', [CohortController::class, 'addStudent'])->name('cohorts.add-student');
+        Route::post('/cohorts/{cohort}/attach-student', [CohortController::class, 'attachStudent'])->name('cohort.attachStudent');
 
 
         // Teachers
         Route::get('/teachers', [TeacherController::class, 'index'])->name('teacher.index');
         Route::post('/teachers', [TeacherController::class, 'store'])->name('teacher.store');
+
 
         // Students
         Route::get('students', [StudentController::class, 'index'])->name('student.index'); //Index
@@ -62,6 +65,9 @@ Route::middleware('auth')->group(function () {
         // User
         Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); //Update
         Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy'); //Destroy
+
+        // Email
+        Route::put('/profile/email', [ProfileController::class, 'updateEmail'])->name('profile.email.update');
 
     });
 

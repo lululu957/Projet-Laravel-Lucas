@@ -29,9 +29,12 @@ class CohortController extends Controller
      */
     public function show(Cohort $cohort) {
 
-        $students = User::where('role', 'student')->get(); // ou tout autre filtre
+        $students = \App\Models\User::whereHas('userSchools', function ($query) use ($cohort) {
+            $query->where('school_id', $cohort->school_id)
+                ->where('role', 'student');
+        })->get();
 
-        return view('cohorts.show', compact('cohort', 'students'));
+        return view('pages.cohorts.show', compact('cohort', 'students'));
     }
 
     public function store(Request $request)
@@ -80,17 +83,26 @@ class CohortController extends Controller
         return redirect()->route('cohort.index')->with('success', 'Promotion mise à jour avec succès');
     }
 
-    public function addStudent(Request $request, Cohort $cohort)
+    public function attachStudent(Request $request, Cohort $cohort)
     {
+
         $request->validate([
-            'user_id' => ['required', 'exists:users,id'],
+            'user_id' => 'required|exists:users,id', // Validation correcte
         ]);
 
-        // Évite les doublons
-        $cohort->students()->syncWithoutDetaching([$request->user_id]);
+        dd('Reçu !');
+        $student = User::findOrFail($request->user_id);  // Récupérer l'étudiant
 
-        return redirect()->back()->with('success', 'Étudiant ajouté avec succès.');
+        // Empêcher l'ajout de doublons
+        if (! $cohort->users()->where('user_id', $student->id)->exists()) {
+            $cohort->users()->attach($student->id);  // Attacher l'étudiant à la promotion
+
+            return redirect()->route('cohort.show', $cohort->id)
+                ->with('success', 'Étudiant ajouté à la promotion avec succès.');
+        } else {
+            return redirect()->route('cohort.show', $cohort->id)
+                ->with('info', 'Cet étudiant est déjà dans la promotion.');
+        }
     }
-
 
 }

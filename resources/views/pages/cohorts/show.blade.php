@@ -37,17 +37,45 @@
                                                     <span class="sort-label">Date de naissance</span>
                                                     <span class="sort-icon"></span>
                                                 </span>
+                                        <th class="min-w-[50px]">
+                                            <span class="sort asc">
+                                                 <span class="sort-label">Icone</span>
+                                            </span>
                                         </th>
-                                        <th class="max-w-[50px]"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <tr>
-                                        <td>Doe</td>
-                                        <td>John</td>
-                                        <td>10/02/2000</td>
-                                        <td class="cursor-pointer pointer">
-                                            <i class="ki-filled ki-trash"></i>
+                                        <td>
+
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td>
+
+                                        </td>
+                                        <td class="px-0 py-2 text-center w-[80px]">
+                                            <div class="flex items-center justify-center gap-4">
+                                                <!-- Icône de modification -->
+                                                <a class="hover:text-primary cursor-pointer"
+                                                   href="#"
+                                                   data-modal-toggle="#cohort-modal"
+                                                   data-cohort='@json($cohort)'
+                                                   onclick="openEditModal(this)">
+                                                    <i class="ki-filled ki-cursor"></i>
+                                                </a>
+
+                                                <!-- Icône de suppression -->
+                                                <form action="{{ route('user.destroy', $cohort->id) }}" method="POST"
+                                                      onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="hover:text-danger cursor-pointer bg-transparent border-0">
+                                                        <i class="text-danger ki-filled ki-shield-cross"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -79,9 +107,8 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('cohorts.add-student', $cohort->id) }}" method="POST" class="flex flex-col gap-5">
-                        @csrf
-
+                    <form method="POST" action="{{ route('cohort.attachStudent', $cohort->id) }}" class="card-body flex flex-col gap-5">
+                    @csrf
                         <x-forms.dropdown name="user_id" :label="__('Etudiant')">
                             @foreach ($students as $student)
                                 <option value="{{ $student->id }}">
@@ -89,14 +116,13 @@
                                 </option>
                             @endforeach
                         </x-forms.dropdown>
-
-                        <x-forms.primary-button>
-                            {{ __('Valider') }}
-                        </x-forms.primary-button>
+                        <button type="submit">Tester</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
     <!-- end: grid -->
+
+
 </x-app-layout>

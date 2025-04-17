@@ -34,38 +34,43 @@
                 </div>
             </div>
         </div>
-        <div class="w-full">
-            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                <label class="form-label flex items-center gap-1 max-w-56">
-                    Last name
-                </label>
-                <x-forms.input
-                    name="last_name" type="text" :value="old('name', auth()->user()->last_name)"
-                    required autofocus class="w-full" :messages="$errors->get('last_name')" />
+        <form method="post" action="{{ route('profile.updatePP') }}" class="card-body flex flex-col gap-5 p-10">
+            @csrf
+            @method('patch')
+            <div class="w-full">
+                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                    <label class="form-label flex items-center gap-1 max-w-56">
+                        Last name
+                    </label>
+                    <x-forms.input
+                        name="last_name" type="text" :value="old('name', auth()->user()->last_name)"
+                        required autofocus class="w-full" :messages="$errors->get('last_name')" />
+                </div>
             </div>
-        </div>
-        <div class="w-full">
-            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                <label class="form-label flex items-center gap-1 max-w-56">
-                    First name
-                </label>
-                <x-forms.input
-                    name="first_name" type="text" :value="old('name', auth()->user()->first_name)"
-                    required autofocus class="w-full" :messages="$errors->get('first_name')" />
+            <div class="w-full">
+                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                    <label class="form-label flex items-center gap-1 max-w-56">
+                        First name
+                    </label>
+                    <x-forms.input
+                        name="first_name" type="text" :value="old('name', auth()->user()->first_name)"
+                        required autofocus class="w-full" :messages="$errors->get('first_name')" />
+                </div>
             </div>
-        </div>
-        <div class="w-full">
-            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                <label class="form-label flex items-center gap-1 max-w-56">
-                    Phone number
-                </label>
-                <input class="input" placeholder="Enter phone" type="text"/>
+            <div class="w-full">
+                <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
+                    <label class="form-label flex items-center gap-1 max-w-56">
+                        Phone number
+                    </label>
+                    <input class="input" placeholder="Enter phone" type="text"/>
+                </div>
             </div>
-        </div>
-        <div class="flex justify-end pt-2.5">
-            <button class="btn btn-primary">
-                Save Changes
-            </button>
-        </div>
+
+            <div class="flex justify-end pt-2.5">
+                <div class="flex justify-end">
+                    <button type="submit" class="submit-btn">Save Changes</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
