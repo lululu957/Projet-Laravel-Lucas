@@ -71,3 +71,5 @@ J'ai bien mieux compris Laravel, son utilisation, la compréhension des routes e
 🗓️ Deadline
 Date de rendu : 18 avril 2025 à 16h00
 Rendu sur Blackboard
+
+NOTE : J'ai peur d'avoir eu un petit soucis sur le master (branch) ducoup le "bon" code se trouve normalement sur master mais il existe une branch "form" qui contient tout !
