@@ -3,6 +3,7 @@
 Coding Tool Box est une plateforme web centralisée destinée à la gestion des étudiants, enseignants, promotions et activités au sein de la Coding Factory. Elle vise à fluidifier les processus administratifs et renforcer la collaboration entre les différents acteurs de l'école à travers des outils modernes (IA, Kanban, tableaux de bord personnalisés...).
 
 ✅ Fonctionnalités Réalisées
+
 🎛️ Dashboard Admin
 - Vue d'ensemble avec les compteurs de promotions, étudiants, enseignants et groupes.
 
