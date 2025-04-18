@@ -1,38 +1,38 @@
-📦 Coding Tool Box – EC CODE B1 2025
+📦 Coding Tool Box - By Lucas
 🎯 Objectif du Projet
 Coding Tool Box est une plateforme web centralisée destinée à la gestion des étudiants, enseignants, promotions et activités au sein de la Coding Factory. Elle vise à fluidifier les processus administratifs et renforcer la collaboration entre les différents acteurs de l'école à travers des outils modernes (IA, Kanban, tableaux de bord personnalisés...).
 
 ✅ Fonctionnalités Réalisées
 🎛️ Dashboard Admin
-Vue d'ensemble avec les compteurs de promotions, étudiants, enseignants et groupes.
+- Vue d'ensemble avec les compteurs de promotions, étudiants, enseignants et groupes.
 
-Accès rapide à la gestion des entités principales.
+- Accès rapide à la gestion des entités principales.
 
-Données dynamiques sauf le compteur de groupes (statisé comme demandé).
+- Données dynamiques sauf le compteur de groupes (statisé comme demandé).
 
 🎓 Gestion des Étudiants
-Création, modification et suppression d’un étudiant.
+- Création, modification et suppression d’un étudiant.
 
-Assignation d’un étudiant à une promotion.
+- Assignation d’un étudiant à une promotion.
 
-Informations collectées : nom, prénom, date de naissance, email.
+- Informations collectées : nom, prénom, date de naissance, email.
 
-Génération de mot de passe automatisée (backend).
+- Génération de mot de passe automatisée (backend).
 
 🏫 Gestion des Promotions
-Création, modification et suppression d’une promotion.
+- Création, modification et suppression d’une promotion.
 
-Interface intuitive via modale.
+- Interface intuitive via modale.
 
 👨‍🏫 Gestion des Enseignants
-Création, modification et suppression d’un enseignant.
+- Création, modification et suppression d’un enseignant.
 
-Informations collectées : nom, prénom, email.
+- Informations collectées : nom, prénom, email.
 
 🧑‍💻 Espace Utilisateur
 L’utilisateur peut :
 
-Modifier son email et son mot de passe.
+- Modifier son email et son mot de passe.
 
 🧩 Fonctionnalités Partiellement Implémentées
 
