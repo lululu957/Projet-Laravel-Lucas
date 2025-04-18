@@ -46,6 +46,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    {{-- Formulaire permettant  d'afficher les différentes promotions --}}
                                     @foreach($users as $user)
                                         <tr>
                                             <td>{{ $user->last_name }}</td>
@@ -95,6 +96,7 @@
                     </h3>
                 </div>
                 <div class="card-body">
+                    {{-- Formulaire permettant d'ajouter un etudiant a une promotion --}}
                     <form method="POST" action="{{ route('cohort.attachStudent', $cohort->id) }}" class="card-body flex flex-col gap-5">
                     @csrf
                         <x-forms.dropdown name="user_id" :label="__('Etudiant')">

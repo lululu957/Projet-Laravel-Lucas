@@ -1,8 +1,10 @@
+{{-- Extension de cohorts index --}}
 @extends('layouts.modal', [
     'id'    => 'cohort-modal',
     'title'  => 'Informations promotions',
 ])
 
+{{-- Formulaire permettant  de modifier une promotion --}}
 @section('modal-content')
      <form method="POST" id="edit_user_form">
     @csrf

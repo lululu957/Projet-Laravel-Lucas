@@ -117,6 +117,7 @@
                         Ajouter une promotion
                     </h3>
                 </div>
+                {{-- Formulaire permettant  d'ajouter une promotion --}}
                 <form method="POST" action="{{ route('cohort.store') }}" class="card-body flex flex-col gap-5">
                     @csrf
 
@@ -128,7 +129,7 @@
 
                     <x-forms.input type="date" id="edit_end_date" name="end_date" :label="__('Fin de l\'année')"/>
 
-
+                    {{-- Verifie les erreurs --}}
                 @if ($errors->any())
                         <div class="alert alert-danger">
                             <ul>
@@ -138,7 +139,7 @@
                             </ul>
                         </div>
                     @endif
-
+                    {{-- Bouton Valider --}}
                     <x-forms.primary-button>
                         {{ __('Valider') }}
                     </x-forms.primary-button>
@@ -148,6 +149,7 @@
     </div>
     <!-- end: grid -->
 
+    {{-- Data --}}
     <script>
         function openEditModal(element) {
             const cohort = JSON.parse(element.getAttribute('data-cohort'));
