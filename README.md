@@ -36,10 +36,11 @@ L’utilisateur peut :
 
 🧩 Fonctionnalités Partiellement Implémentées
 
-Fonctionnalité	État	Remarques
-Requêtes AJAX pour les modales (CRUD)	❌ Non	Interface prête, logique backend existante, mais pas d’AJAX intégré
-Photo de profil (upload utilisateur)	❌ Non	Route existante mais fonctionnalité non finalisée
-Story 2 – Vue enseignant sur ses promotions	❌ Non	Structure des tables prête, mais affichage côté enseignant manquant
+| Fonctionnalité                                   | État     | Remarques                                                                 |
+|--------------------------------------------------|----------|---------------------------------------------------------------------------|
+| Requêtes AJAX pour les modales (CRUD)            | ❌ Non   | Interface prête, logique backend existante, mais pas d’AJAX intégré       |
+| Photo de profil (upload utilisateur)             | ❌ Non   | Route existante mais fonctionnalité non finalisée                         |
+| Story 2 – Vue enseignant sur ses promotions      | ❌ Non   | Structure des tables prête, mais affichage côté enseignant manquant       |
 💡 À propos de l’UI
 
 
