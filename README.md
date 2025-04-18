@@ -1,100 +1,71 @@
-# 🚀 Coding Tool Box – Guide d'installation
+📦 Coding Tool Box – EC CODE B1 2025
+🎯 Objectif du Projet
+Coding Tool Box est une plateforme web centralisée destinée à la gestion des étudiants, enseignants, promotions et activités au sein de la Coding Factory. Elle vise à fluidifier les processus administratifs et renforcer la collaboration entre les différents acteurs de l'école à travers des outils modernes (IA, Kanban, tableaux de bord personnalisés...).
 
-Bienvenue dans **Coding Tool Box**, un outil complet de gestion pédagogique conçu pour la Coding Factory.  
-Ce projet Laravel inclut la gestion des groupes, promotions, étudiants, rétro (Kanban), QCM  dynamiques, et bien plus.
+✅ Fonctionnalités Réalisées
+🎛️ Dashboard Admin
+Vue d'ensemble avec les compteurs de promotions, étudiants, enseignants et groupes.
 
----
+Accès rapide à la gestion des entités principales.
 
-## 📦 Prérequis
+Données dynamiques sauf le compteur de groupes (statisé comme demandé).
 
-Assurez-vous d’avoir les éléments suivants installés sur votre machine :
+🎓 Gestion des Étudiants
+Création, modification et suppression d’un étudiant.
 
-- PHP ≥ 8.1
-- Composer
-- MySQL ou MariaDB
-- Node.js + npm (pour les assets frontend si nécessaire)
-- Laravel CLI (`composer global require laravel/installer`)
+Assignation d’un étudiant à une promotion.
 
----
+Informations collectées : nom, prénom, date de naissance, email.
 
-## ⚙️ Installation du projet
+Génération de mot de passe automatisée (backend).
 
-Exécutez les étapes ci-dessous pour lancer le projet en local :
+🏫 Gestion des Promotions
+Création, modification et suppression d’une promotion.
 
-### 1. Cloner le dépôt
+Interface intuitive via modale.
 
-```bash
-git clone https://m_thibaud@bitbucket.org/m_thibaud/projet-web-2025.git
-cd coding-tool-box
-cp .env.example .env
-```
+👨‍🏫 Gestion des Enseignants
+Création, modification et suppression d’un enseignant.
 
-### 2. Configuration de l'environnement
+Informations collectées : nom, prénom, email.
 
-```bash
-✍️ Ouvrez le fichier .env et configurez les paramètres liés à votre base de données :
+🧑‍💻 Espace Utilisateur
+L’utilisateur peut :
 
-DB_DATABASE=nom_de_votre_bdd
-DB_USERNAME=utilisateur
-DB_PASSWORD=motdepasse
-```
+Modifier son email et son mot de passe.
 
-### 3. Installation des dépendances PHP
+🧩 Fonctionnalités Partiellement Implémentées
 
-```bash
-composer install
-```
+Fonctionnalité	État	Remarques
+Requêtes AJAX pour les modales (CRUD)	❌ Non	Interface prête, logique backend existante, mais pas d’AJAX intégré
+Photo de profil (upload utilisateur)	❌ Non	Route existante mais fonctionnalité non finalisée
+Story 2 – Vue enseignant sur ses promotions	❌ Non	Structure des tables prête, mais affichage côté enseignant manquant
+💡 À propos de l’UI
 
-### 4. Nettoyage et optimisation du cache
 
-```bash
-php artisan optimize:clear
-```
+Utilisation des classes CSS du thème pour gagner du temps dans le front.
 
-### 5. Génération de la clé d'application
+Design simple et épuré, possibilité d'améliorations futures.
 
-```bash
-php artisan key:generate
-```
+🧪 Technologies Utilisées
+Frontend : HTML / CSS / JavaScript
 
-### 6. Migration de la base de données
+Backend : PHP / Laravel 
 
-```bash
-php artisan migrate
-```
+Base de données : MySQL / MariaDB
 
-### 7. Population de la base (Données de test)
 
-```bash
-php artisan db:seed
-```
+🚧 À compléter si évolution
+Intégration complète des actions via AJAX pour éviter les rechargements de page.
 
----
+Fichier de seed ou fixtures pour peupler la base de données.
 
-## 💻 Compilation des assets (si nécessaire)
+Sécurité renforcée sur les formulaires (CSRF, validation côté serveur).
 
-```bash
-npm install
-npm run dev
-```
 
----
+🔚 Conclusion
+J'ai bien mieux compris Laravel, son utilisation, la compréhension des routes et des contrôleurs qui agissent avec le Blade (la vue). Mes premières difficultés ont été l'adaptation au nouveau backlog, la story 2, car je n'ai pas trouvé pendant longtemps les promotions lorsque l'on se connectait à Teachers (problème de policies à ce que j'ai entendu) et l'adaptation à un code préfait.
 
-## 👤 Comptes de test disponibles
-
-| Rôle       | Email                         | Mot de passe |
-|------------|-------------------------------|--------------|
-| **Admin**  | admin@codingfactory.com       | 123456       |
-| Enseignant | teacher@codingfactory.com     | 123456       |
-| Étudiant   | student@codingfactory.com     | 123456       |
-
----
-
-## 🚧 Fonctionnalités principales
-
-- 🔧 Gestion des groupes, promotions, étudiants
-- 📅 Vie commune avec système de pointage
-- 📊 Bilans semestriels étudiants via QCM générés par IA
-- 🧠 Génération automatique de QCM par langage sélectionné
-- ✅ Système de Kanban pour les rétrospectives
-- 📈 Statistiques d’usage et suivi pédagogique
+🗓️ Deadline
+Date de rendu : 18 avril 2025 à 16h00
+Rendu sur Blackboard
