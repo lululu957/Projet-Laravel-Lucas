@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cohort;
+use App\Models\UserSchool;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -29,12 +30,16 @@ class CohortController extends Controller
      */
     public function show(Cohort $cohort) {
 
-        $students = \App\Models\User::whereHas('userSchools', function ($query) use ($cohort) {
+        $students = \App\Models\User::whereHas('userschool', function ($query) use ($cohort) {
             $query->where('school_id', $cohort->school_id)
                 ->where('role', 'student');
         })->get();
 
-        return view('pages.cohorts.show', compact('cohort', 'students'));
+        $users = User::whereHas('userschool', function ($query) use ($cohort) {
+            $query->where('cohort_id', $cohort->id);
+        })->get();
+
+        return view('pages.cohorts.show', compact('cohort', 'students', 'users'));
     }
 
     public function store(Request $request)
@@ -85,24 +90,17 @@ class CohortController extends Controller
 
     public function attachStudent(Request $request, Cohort $cohort)
     {
+        $userSchool = UserSchool::where('user_id', $request->user_id)
+            ->first();
 
-        $request->validate([
-            'user_id' => 'required|exists:users,id', // Validation correcte
+
+        $userSchool->update([
+            'cohort_id' => $cohort->id,
         ]);
 
-        dd('Reçu !');
-        $student = User::findOrFail($request->user_id);  // Récupérer l'étudiant
 
-        // Empêcher l'ajout de doublons
-        if (! $cohort->users()->where('user_id', $student->id)->exists()) {
-            $cohort->users()->attach($student->id);  // Attacher l'étudiant à la promotion
-
-            return redirect()->route('cohort.show', $cohort->id)
-                ->with('success', 'Étudiant ajouté à la promotion avec succès.');
-        } else {
-            return redirect()->route('cohort.show', $cohort->id)
-                ->with('info', 'Cet étudiant est déjà dans la promotion.');
-        }
+        return back();
     }
+
 
 }

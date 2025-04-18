@@ -20,7 +20,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::patch('/profile/update-pp', [ProfileController::class, 'updatePP'])->name('profile.updatePP');
 
 
     Route::middleware('verified')->group(function () {
@@ -65,6 +64,7 @@ Route::middleware('auth')->group(function () {
         // User
         Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update'); //Update
         Route::delete('/user/{user}', [UserController::class, 'destroy'])->name('user.destroy'); //Destroy
+        Route::patch('/cohort/{user}/remove', [UserController::class, 'remove'])->name('user.remove'); //Del Cohort_id (Remove)
 
         // Email
         Route::put('/profile/email', [ProfileController::class, 'updateEmail'])->name('profile.email.update');

@@ -7,6 +7,7 @@
 
     <!-- begin: grid -->
     <div class="grid lg:grid-cols-3 gap-5 lg:gap-7.5 items-stretch">
+        <link rel="stylesheet" href="{{ asset('css/student.css') }}">
         <!-- Colonne des étudiants -->
         <div class="lg:col-span-2">
             <div class="grid">
@@ -45,39 +46,26 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td>
-
-                                        </td>
-                                        <td class="px-0 py-2 text-center w-[80px]">
-                                            <div class="flex items-center justify-center gap-4">
-                                                <!-- Icône de modification -->
-                                                <a class="hover:text-primary cursor-pointer"
-                                                   href="#"
-                                                   data-modal-toggle="#cohort-modal"
-                                                   data-cohort='@json($cohort)'
-                                                   onclick="openEditModal(this)">
-                                                    <i class="ki-filled ki-cursor"></i>
-                                                </a>
-
-                                                <!-- Icône de suppression -->
-                                                <form action="{{ route('user.destroy', $cohort->id) }}" method="POST"
-                                                      onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit" class="hover:text-danger cursor-pointer bg-transparent border-0">
-                                                        <i class="text-danger ki-filled ki-shield-cross"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach($users as $user)
+                                        <tr>
+                                            <td>{{ $user->last_name }}</td>
+                                            <td>{{ $user->first_name }}</td>
+                                            <td>{{ $user->birth_date }}</td>
+                                            <td class="px-0 py-2 text-center w-[80px]">
+                                                <div class="flex items-center justify-center gap-4">
+                                                    <!-- Icône de suppression -->
+                                                    <form action="{{ route('user.remove', $user->id) }}" method="POST"
+                                                          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?');">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <button type="submit" class="hover:text-danger cursor-pointer bg-transparent border-0">
+                                                            <i class="text-danger ki-filled ki-shield-cross"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -116,7 +104,7 @@
                                 </option>
                             @endforeach
                         </x-forms.dropdown>
-                        <button type="submit">Tester</button>
+                        <button type="submit" class="submit-btn">Ajouter un étudiant</button>
                     </form>
                 </div>
             </div>

@@ -55,11 +55,7 @@
                                                     <a class="leading-none font-medium text-sm text-gray-900 hover:text-primary"
                                                        href="{{ route('cohort.show', $cohort->id) }}">
                                                         {{ $cohort->name }}
-                                                        <p>Voici les détails de la promotion.</p>
                                                     </a>
-                                                        <span class="text-2sm text-gray-700 font-normal leading-3">
-                                                            {{ $cohort->location ?? 'Non spécifié' }}
-                                                        </span>
                                                 </div>
                                             </td>
                                             <td>
@@ -170,3 +166,4 @@
     </script>
 </x-app-layout>
 @include('pages.cohorts.cohort-modal')
+

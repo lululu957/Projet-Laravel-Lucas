@@ -84,13 +84,14 @@ class User extends Authenticatable
             ->first();
     }
 
-    public function userSchools()
-    {
-        return $this->hasMany(UserSchool::class);
-    }
 
     public function cohorts()
     {
         return $this->belongsToMany(Cohort::class);
+    }
+
+    public function userschool()
+    {
+        return $this->hasMany(UserSchool::class);
     }
 }

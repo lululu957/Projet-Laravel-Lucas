@@ -16,7 +16,7 @@ class ProfileUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // 'name' => ['required', 'string', 'max:255'],
+            // Validation pour l'email
             'email' => [
                 'required',
                 'string',
@@ -24,6 +24,17 @@ class ProfileUpdateRequest extends FormRequest
                 'email',
                 'max:255',
                 Rule::unique(User::class)->ignore($this->user()->id),
+            ],
+
+            // Validation pour le mot de passe actuel
+            'current_password' => ['required', 'current_password'], // Vérifie que le mot de passe actuel est correct
+
+            // Validation pour le nouveau mot de passe
+            'password' => [
+                'required',  // Le mot de passe doit être requis
+                'string',    // Doit être une chaîne
+                'min:8',     // Minimum 8 caractères
+                'confirmed', // Vérifie que le mot de passe et sa confirmation sont égaux
             ],
 
         ];

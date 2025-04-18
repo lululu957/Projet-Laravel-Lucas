@@ -42,6 +42,14 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function remove(User $user)
+    {
+        UserSchool::where('user_id', $user->id)
+            ->update(['cohort_id' => null]);
+
+        return redirect()->back()->with('success', 'Étudiant retiré du cohort');
+    }
+
 
 }
 

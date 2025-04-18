@@ -11,17 +11,15 @@ class Cohort extends Model
     protected $table = 'cohorts';
     protected $fillable = ['school_id', 'name', 'description', 'start_date', 'end_date'];
 
-    public function getYearsAttribute()
+    public function student()
     {
-        $startYear = \Carbon\Carbon::parse($this->start_date)->format('Y');
-        $endYear = \Carbon\Carbon::parse($this->end_date)->format('Y');
-        return "$startYear-$endYear";
+        return $this->hasMany(UserSchool::class)->with('user');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
 }
 
 

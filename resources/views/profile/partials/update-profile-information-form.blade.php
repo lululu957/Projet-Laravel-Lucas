@@ -34,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <form method="post" action="{{ route('profile.updatePP') }}" class="card-body flex flex-col gap-5 p-10">
+        <form method="post" action="{{ route('profile.update') }}" class="card-body flex flex-col gap-5 p-10">
             @csrf
             @method('patch')
             <div class="w-full">
@@ -65,11 +65,8 @@
                     <input class="input" placeholder="Enter phone" type="text"/>
                 </div>
             </div>
-
             <div class="flex justify-end pt-2.5">
-                <div class="flex justify-end">
-                    <button type="submit" class="submit-btn">Save Changes</button>
-                </div>
+                <button type="submit" class="btn btn-primary">Save Changes</button>
             </div>
         </form>
     </div>

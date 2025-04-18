@@ -23,12 +23,20 @@
             </label>
         </div>
         <div class="flex justify-end gap-2.5">
-            <button class="btn btn-light">
-                Deactivate Instead
-                <button class="btn btn-danger">
-                    Delete Account
-                </button>
-            </button>
+            <form action="{{ route('profile.destroy') }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button class="btn btn-danger" type="submit">Delete Account</button>
+            </form>
         </div>
     </div>
 </div>
+
+{{--<script>--}}
+{{--    document.querySelector('form').addEventListener('submit', function (e) {--}}
+{{--        if (!document.querySelector('input[name="delete"]').checked) {--}}
+{{--            e.preventDefault();--}}
+{{--            alert('Veuillez confirmer la suppression du compte en cochant la case.');--}}
+{{--        }--}}
+{{--    });--}}
+{{--</script>--}}

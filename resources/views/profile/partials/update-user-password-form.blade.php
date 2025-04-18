@@ -4,38 +4,44 @@
             Password
         </h3>
     </div>
-    <div class="card-body grid gap-5">
-        <div class="w-full">
-            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                <label class="form-label max-w-56">
-                    Current Password
-                </label>
-                <input class="input" placeholder="Your current password" type="text" value="">
-                </input>
-            </div>
+    <form method="post" action="{{ route('password.update') }}" class="card-body flex flex-col gap-5 p-10">
+        @csrf
+        @method('put')
+
+        <div>
+            <x-forms.input
+                label="{{ __('Current Password') }}"
+                name="current_password"
+                type="password"
+                :placeholder="__('Enter your current password')"
+                :messages="$errors->updatePassword->get('current_password')"
+            />
         </div>
-        <div class="w-full">
-            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                <label class="form-label max-w-56">
-                    New Password
-                </label>
-                <input class="input" placeholder="New password" type="text" value="">
-                </input>
-            </div>
+
+        <div>
+            <x-forms.input
+                label="{{ __('New Password') }}"
+                name="password"
+                type="password"
+                :placeholder="__('Enter new password')"
+                :messages="$errors->updatePassword->get('password')"
+            />
         </div>
-        <div class="w-full">
-            <div class="flex items-baseline flex-wrap lg:flex-nowrap gap-2.5">
-                <label class="form-label max-w-56">
-                    Confirm New Password
-                </label>
-                <input class="input" placeholder="Confirm new password" type="text" value="">
-                </input>
-            </div>
+
+        <div>
+            <x-forms.input
+                label="{{ __('Confirm Password') }}"
+                name="password_confirmation"
+                type="password"
+                :placeholder="__('Confirm new password')"
+                :messages="$errors->updatePassword->get('password_confirmation')"
+            />
         </div>
+
         <div class="flex justify-end pt-2.5">
-            <button class="btn btn-primary">
-                Reset Password
-            </button>
+            <x-forms.primary-button>
+                {{ __('  Save  ') }}
+            </x-forms.primary-button>
         </div>
-    </div>
+    </form>
 </div>
